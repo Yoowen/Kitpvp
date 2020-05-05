@@ -1,0 +1,6 @@
+name: Kitpvp
+version: ${project.version}
+main: kitpvp.Main
+api-version: 1.13
+authors: [goowen]
+description: Kleine kitpvp plugin voor minecraft v1.13.2
