@@ -2,8 +2,8 @@ package me.goowen.kitpvp;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.goowen.kitpvp.Modules.configs.ConfigModule;
-import me.goowen.kitpvp.Modules.utilities.logger.Logger;
+import me.goowen.kitpvp.Modules.Configs.ConfigModule;
+import me.goowen.kitpvp.Modules.Utilities.Log;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
@@ -16,14 +16,13 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         setInstance(this);
-        new UtilsModule();
         new ConfigModule();
         this.loadMS = System.currentTimeMillis();
-        Logger.INFO.log("Gestart met het laden van kitPVP V" + this.getDescription().getVersion() + " by " + this.getDescription().getAuthors().toString().replace("[", "").replace("]", ""));
+        Log.INFO.send("Gestart met het laden van kitPVP V" + this.getDescription().getVersion() + " by " + this.getDescription().getAuthors().toString().replace("[", "").replace("]", ""));
         // Plugin zou hierna volledig moeten aan gaan.
 
         //Plugin zou volledig aan moeten staan na deze message.
-        Logger.INFO.log("Kit pvp succesvol geladen. Dit prosess duurde " + (System.currentTimeMillis() - loadMS) + " ms!");
+        Log.INFO.send("Kit pvp succesvol geladen. Dit prosess duurde " + (System.currentTimeMillis() - loadMS) + " ms!");
     }
 
     @Override

@@ -1,4 +1,4 @@
-package me.goowen.kitpvp.Modules.utilities;
+package me.goowen.kitpvp.Modules.Utilities;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
