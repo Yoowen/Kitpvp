@@ -4,3 +4,9 @@ main: me.goowen.kitpvp.Kitpvp
 api-version: 1.16
 authors: [goowen]
 description: Kleine kitpvp plugin voor minecraft v1.16.2
+
+commands:
+  spawneditmode:
+    usage: /spawneditmode
+  kits:
+    usage: /kits
