@@ -9,36 +9,44 @@ import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ConfigManager
 {
     private File config;
     private FileConfiguration configConfiguration;
-    private Kitpvp plugin;
     private String name;
+    private Kitpvp plugin = Kitpvp.getInstance();
 
-    //Call upon this class
-    public ConfigManager(Kitpvp plugin, String name) {
-        this.plugin = plugin;
+    /**
+     * Maakt Deze class aan en roept de class aan een config te creeren.
+     * @param name De naam van de config
+     */
+    public ConfigManager(String name)
+    {
         this.name = name;
         this.createCustomConfig();
-        try {
+        try
+        {
             this.configConfiguration.save(config);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    //Creates a new config
-    private void createCustomConfig() {
+    /**
+     * Maakt een nieuwe config aan in de vorm van een YML en
+     * wanneer hij al bestaat slaat hij hem op in deze class.
+     */
+    private void createCustomConfig()
+    {
         this.config = new File(plugin.getDataFolder(), this.name);
-        if (!config.exists()) {
+        //Als de Config niet bestaan word hij opniew aangemaakt
+        if (!config.exists())
+        {
             if (plugin.getResource(this.name) == null) {
                 try {
                     config.getParentFile().mkdirs();
                     config.createNewFile();
-                    //plugin.saveResource(this.name, false);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -49,86 +57,60 @@ public class ConfigManager
                 return;
             }
         }
+
         this.configConfiguration = new YamlConfiguration();
 
-        try {
+        try
+        {
             configConfiguration.load(config);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
     }
 
-    //Returns config
-    public File getConfig() {
+    /**
+     * Returnt de config die is aangemaakt.
+     * @return config
+     */
+    public File getConfig()
+    {
         return config;
     }
 
-    public FileConfiguration getConfigConfiguration() {
+    /**
+     * Returnt de configuratie van de yml file.
+     * @return
+     */
+    public FileConfiguration getConfigConfiguration()
+    {
         return configConfiguration;
     }
 
-    //Config saving
-    public void saveAsync(ConfigManager c) {
-        Bukkit.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
-            try {
-                c.getConfigConfiguration().save(c.getConfig());
+    /**
+     * Slaat de Config Async op
+     */
+    public void saveAsync()
+    {
+        Bukkit.getServer().getScheduler().runTaskAsynchronously(plugin, () ->
+        {
+            try
+            {
+                this.getConfigConfiguration().save(this.getConfig());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
-    public void save(ConfigManager c) {
-        try {
-            c.getConfigConfiguration().save(c.getConfig());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    //Path creator
-    public void createConfigPath(String path, boolean value) {
-
-        if (!this.getConfigConfiguration().contains(path)) {
-            this.getConfigConfiguration().set(path, value);
-
-        }
-    }
-
-    public void createConfigPath(String path, int value) {
-
-        if (!this.getConfigConfiguration().contains(path)) {
-            this.getConfigConfiguration().set(path, value);
-
-        }
-    }
-
-    public void createConfigPath(String path, ArrayList value) {
-
-        if (!this.getConfigConfiguration().contains(path)) {
-            this.getConfigConfiguration().set(path, value);
-
-        }
-    }
-
-    public void createConfigPath(String path, String value) {
-
-        if (!this.getConfigConfiguration().contains(path)) {
-            this.getConfigConfiguration().set(path, value);
-
-        }
-    }
-
+    /**
+     * Creert een Pad en zet een value in de vorm van een ItemStacl[] er op.
+     * @param path Het pad waar de value heen moet.
+     * @param value De value die op het pad moet worden gezet.
+     */
     public void createConfigPath(String path, ItemStack[] value)
     {
-        if (!this.getConfigConfiguration().contains(path)) {
-            this.getConfigConfiguration().set(path, value);
-
-        }
-    }
-
-    public void createConfigPath(String path, ItemStack value)
-    {
-        if (!this.getConfigConfiguration().contains(path)) {
+        if (!this.getConfigConfiguration().contains(path))
+        {
             this.getConfigConfiguration().set(path, value);
 
         }

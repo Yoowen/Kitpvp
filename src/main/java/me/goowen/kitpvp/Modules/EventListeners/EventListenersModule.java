@@ -22,6 +22,6 @@ public class EventListenersModule
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerDropEvent(), plugin);
-        System.out.println(ChatColor.BLUE + "[eventListenerModule] De module is succesvol geladen!");
+        System.out.println(ChatColor.DARK_AQUA + "[eventListenerModule] De module is succesvol geladen!");
     }
 }

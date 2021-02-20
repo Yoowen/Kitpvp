@@ -7,6 +7,10 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 
 public class PlayerDropEvent implements Listener
 {
+    /**
+     * Voorkomt de speler items te laten dropen zolang hij of zij in een andere gamemode zit dan Creative.
+     * @param event
+     */
     @EventHandler
     public void PlayerDropEvent(PlayerDropItemEvent event)
     {

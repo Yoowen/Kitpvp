@@ -15,8 +15,8 @@ public class KitsModule
     {
         kitsModule = this;
         kitsManager = new KitsManager();
-        plugin.getCommand("kits").setExecutor(new KitsCommand());
+        plugin.getCommand("createkit").setExecutor(new KitsCommand());
         Bukkit.getPluginManager().registerEvents(new KitsListener(), plugin);
-        System.out.println(ChatColor.BLUE + "[ConfigModule] De module is succesvol geladen!");
+        System.out.println(ChatColor.DARK_AQUA + "[ConfigModule] De module is succesvol geladen!");
     }
 }

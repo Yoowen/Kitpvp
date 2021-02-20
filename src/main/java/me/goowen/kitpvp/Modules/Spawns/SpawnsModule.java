@@ -18,6 +18,6 @@ public class SpawnsModule
         Bukkit.getPluginManager().registerEvents(new SpawnListener(), plugin);
         plugin.getCommand("spawneditmode").setExecutor(new SpawnsCommand());
 
-        System.out.println(ChatColor.BLUE + "[SpawnsModule] De module is succesvol geladen!");
+        System.out.println(ChatColor.DARK_AQUA + "[SpawnsModule] De module is succesvol geladen!");
     }
 }

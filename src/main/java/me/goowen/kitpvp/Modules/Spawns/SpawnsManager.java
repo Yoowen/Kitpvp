@@ -27,7 +27,7 @@ public class SpawnsManager
         ArrayList<String> list = (ArrayList<String>) configModule.getSpawnsConfig().getConfigConfiguration().getStringList("locations");
         list.add(spawnlocation);
         configModule.getSpawnsConfig().getConfigConfiguration().set("locations", list);
-        configModule.getSpawnsConfig().saveAsync(configModule.getSpawnsConfig());
+        configModule.getSpawnsConfig().saveAsync();
         System.out.println("locations added at" +  spawnlocation);
     }
 
@@ -47,7 +47,7 @@ public class SpawnsManager
             ArrayList<String> list = (ArrayList<String>) configModule.getSpawnsConfig().getConfigConfiguration().getStringList("locations");
             list.remove(spawnlocation);
             configModule.getSpawnsConfig().getConfigConfiguration().set("locations", list);
-            configModule.getSpawnsConfig().saveAsync(configModule.getSpawnsConfig());
+            configModule.getSpawnsConfig().saveAsync();
             System.out.println("locations removed at" +  spawnlocation);
 
         }

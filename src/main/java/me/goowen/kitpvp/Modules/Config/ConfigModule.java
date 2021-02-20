@@ -14,8 +14,8 @@ public class ConfigModule
     public void ConfigModule()
     {
         configModule = this;
-        this.spawnsConfig = new ConfigManager(plugin, "spawns.yml");
-        this.kitsConfig =  new ConfigManager(plugin, "kitsconfig.yml");
-        System.out.println(ChatColor.BLUE + "[ConfigModule] De module is succesvol geladen!");
+        this.spawnsConfig = new ConfigManager("spawns.yml");
+        this.kitsConfig =  new ConfigManager("kitsconfig.yml");
+        System.out.println(ChatColor.DARK_AQUA + "[ConfigModule] De module is succesvol geladen!");
     }
 }

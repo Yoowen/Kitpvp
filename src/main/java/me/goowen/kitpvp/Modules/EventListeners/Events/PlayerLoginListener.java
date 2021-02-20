@@ -5,7 +5,7 @@ import me.goowen.kitpvp.Modules.EventListeners.CustomEvents.AfterPlayerJoinEvent
 import me.goowen.kitpvp.Modules.Lobby.LobbyManager;
 import me.goowen.kitpvp.Modules.Lobby.LobbyModule;
 import me.goowen.kitpvp.Modules.database.DatabaseModule;
-import me.goowen.kitpvp.Modules.database.Manager.DatabaseManager;
+import me.goowen.kitpvp.Modules.database.Manager.AcountManager;
 import me.goowen.kitpvp.Modules.database.Repository.PlayerDB;
 import me.goowen.kitpvp.Modules.database.Callbacks.loadingPlayer;
 import me.goowen.kitpvp.Modules.scoreboard.ScoreboardModule;
@@ -19,11 +19,15 @@ import org.bukkit.event.player.PlayerLoginEvent;
 
 public class PlayerLoginListener implements Listener
 {
-    private DatabaseManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
     private ScoreboardModule scoreboardModule = ScoreboardModule.getScoreboardModule();
     private LobbyManager lobbyManager = LobbyModule.getLobbyManager();
     private Kitpvp plugin = Kitpvp.getInstance();
 
+    /**
+     * Laat de Speler in vanuit de database wanneer de speler klaar is met inladen roept hij het AfterLogin Event aan.
+     * @param event
+     */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void OnLogin(PlayerLoginEvent event)
     {
@@ -31,13 +35,10 @@ public class PlayerLoginListener implements Listener
                 {
                     @Override
                     public void waiting() {
-                        System.out.println("Waiting");
-                        event.getPlayer().sendTitle(ChatColor.DARK_AQUA + "Momentje Geduldt", "We proberen jou spelerdata in te laden!");
                     }
 
                     @Override
                     public void fetching() {
-                        System.out.println("fetching");
                     }
 
                     @Override
@@ -49,19 +50,25 @@ public class PlayerLoginListener implements Listener
                     @Override
                     public void error(String err) {
                         System.out.println(err);
+                        event.getPlayer().kickPlayer(ChatColor.RED + "Er is iets misgegaan bij het inladen van jou data en daarom hebben we jou gekickt!");
                     }
 
                     @Override
                     public void welcome() {
-                        System.out.println("welcome");
-                        event.getPlayer().hideTitle();
                     }
                 }
         );
     }
 
+    /**
+     * Voert de functies uit die moeten gebeuren direct nadat de speler is ingelogt en ingeladen vanuit de database!
+     * Ze het scoreboard op voor de speler
+     * Teleporteert de speler naar de ingame lobby
+     * Zet de speler in lobby mode indien nodig!
+     * @param e
+     */
     @EventHandler
-    public void afterJoin(AfterPlayerJoinEvent e)
+    public void afterLogin(AfterPlayerJoinEvent e)
     {
         Player player = e.getPlayer();
         scoreboardModule.setupScoreboard(player);

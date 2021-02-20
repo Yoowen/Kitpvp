@@ -3,7 +3,7 @@ package me.goowen.kitpvp.Modules.Lobby;
 import me.goowen.kitpvp.Modules.Kits.KitsManager;
 import me.goowen.kitpvp.Modules.Kits.KitsModule;
 import me.goowen.kitpvp.Modules.database.DatabaseModule;
-import me.goowen.kitpvp.Modules.database.Manager.DatabaseManager;
+import me.goowen.kitpvp.Modules.database.Manager.AcountManager;
 import me.goowen.kitpvp.Modules.database.Repository.PlayerDB;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class LobbyListener implements Listener
 {
-    private DatabaseManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
     private LobbyManager lobbyManager = LobbyModule.getLobbyManager();
     private KitsManager kitsManager = KitsModule.getKitsManager();
 

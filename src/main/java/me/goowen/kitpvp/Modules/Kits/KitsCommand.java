@@ -10,12 +10,20 @@ public class KitsCommand implements CommandExecutor
 {
     private KitsManager kitsManager = KitsModule.getKitsManager();
 
+    /**
+     *
+     * @param sender Degene die het command uitvoert.
+     * @param command ongebruikt
+     * @param label ongebruikt
+     * @param args De argumenten die meer worden gegeven met het command!
+     * @return
+     */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         if (sender instanceof Player)
         {
-            if (sender.hasPermission("kitpvp.spawneditor"))
+            if (sender.hasPermission("kitpvp.kits"))
             {
                 Player player = (Player) sender;
                 if (player.getInventory().getItemInMainHand() != null)
@@ -24,6 +32,10 @@ public class KitsCommand implements CommandExecutor
                     {
                         kitsManager.saveKit(player, args[0]);
                         sender.sendMessage(ChatColor.DARK_AQUA + "kit succesfully saved under the name !");
+                    }
+                    else
+                    {
+                        sender.sendMessage(ChatColor.RED + "Arguments are not correct use /createkit <name>!");
                     }
                 }
                 else

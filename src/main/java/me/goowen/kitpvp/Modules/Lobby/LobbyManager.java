@@ -2,7 +2,7 @@ package me.goowen.kitpvp.Modules.Lobby;
 
 import me.goowen.kitpvp.Modules.Utilities.ItemBuilder;
 import me.goowen.kitpvp.Modules.database.DatabaseModule;
-import me.goowen.kitpvp.Modules.database.Manager.DatabaseManager;
+import me.goowen.kitpvp.Modules.database.Manager.AcountManager;
 import me.goowen.kitpvp.Modules.database.Repository.PlayerDB;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class LobbyManager
 {
-    private DatabaseManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
 
     public void lobbycheck(Player player)
     {

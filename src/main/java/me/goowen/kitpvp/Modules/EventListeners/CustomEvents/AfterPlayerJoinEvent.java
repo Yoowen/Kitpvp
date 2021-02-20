@@ -8,20 +8,24 @@ public class AfterPlayerJoinEvent extends Event {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     private final Player player;
 
-    public AfterPlayerJoinEvent(Player player) {
+    public AfterPlayerJoinEvent(Player player)
+    {
         this.player = player;
     }
 
-    public static HandlerList getHandlerList() {
+    public static HandlerList getHandlerList()
+    {
         return HANDLERS_LIST;
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public HandlerList getHandlers()
+    {
         return HANDLERS_LIST;
     }
 
-    public Player getPlayer() {
+    public Player getPlayer()
+    {
         return player;
     }
 }

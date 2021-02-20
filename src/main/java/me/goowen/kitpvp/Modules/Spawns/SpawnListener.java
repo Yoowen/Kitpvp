@@ -2,7 +2,7 @@ package me.goowen.kitpvp.Modules.Spawns;
 
 import me.goowen.kitpvp.Kitpvp;
 import me.goowen.kitpvp.Modules.database.DatabaseModule;
-import me.goowen.kitpvp.Modules.database.Manager.DatabaseManager;
+import me.goowen.kitpvp.Modules.database.Manager.AcountManager;
 import me.goowen.kitpvp.Modules.database.Repository.PlayerDB;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -15,13 +15,13 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 public class SpawnListener implements Listener
 {
-    private DatabaseManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
     private SpawnsManager spawnsManager = SpawnsModule.getSpawnsManager();
     private Kitpvp plugin = Kitpvp.getInstance();
 
     /**
-     *  The event for adding a new spawn location.
-     * @param event the event that is fired.
+     *  Event voor het het plaatsen van spawnpunten
+     * @param event
      */
     @EventHandler
     public void PlaceNewSpawn(BlockPlaceEvent event)
@@ -44,8 +44,8 @@ public class SpawnListener implements Listener
     }
 
     /**
-     * The event for removing a existing spawn location.
-     * @param event the event that is fired.
+     * The event voor het verwijderen van spawnpunten
+     * @param event
      */
     @EventHandler
     public void RemoveOldSpawn(BlockBreakEvent event)

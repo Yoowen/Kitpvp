@@ -17,6 +17,6 @@ public class LobbyModule
         lobbyModule = this;
         lobbyManager = new LobbyManager();
         Bukkit.getPluginManager().registerEvents(new LobbyListener(), plugin);
-        System.out.println(ChatColor.BLUE + "[lobbyModule] De module is succesvol geladen!");
+        System.out.println(ChatColor.DARK_AQUA + "[lobbyModule] De module is succesvol geladen!");
     }
 }

@@ -2,7 +2,7 @@ package me.goowen.kitpvp.Modules.scoreboard;
 
 import lombok.Getter;
 import me.goowen.kitpvp.Modules.database.DatabaseModule;
-import me.goowen.kitpvp.Modules.database.Manager.DatabaseManager;
+import me.goowen.kitpvp.Modules.database.Manager.AcountManager;
 import me.goowen.kitpvp.Modules.database.Repository.PlayerDB;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -11,14 +11,18 @@ public class ScoreboardModule
 {
     @Getter
     public static ScoreboardModule scoreboardModule;
-    private DatabaseManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
 
     public void ScoreboardModule()
     {
         scoreboardModule = this;
-        System.out.println(ChatColor.BLUE + "[ScoreboardModule] De module is succesvol geladen!");
+        System.out.println(ChatColor.DARK_AQUA + "[ScoreboardModule] De module is succesvol geladen!");
     }
 
+    /**
+     * Maakt het scoreboard van een speler aan en zet deze bij de speler in de sidebar.
+     * @param player de speler wiens scoreboard moet worden aangemaakt
+     */
     public void setupScoreboard(Player player)
     {
         PlayerDB playerdb = databaseManager.getPlayerDBbyUUID(player);
@@ -39,6 +43,10 @@ public class ScoreboardModule
         player.setScoreboard(playerdb.getPlayerScoreboard().getScoreBoard());
     }
 
+    /**
+     * Update het scoreboard van de speler met de nieuste waardes!
+     * @param player de speler wiens scoreboard moet worden geupdate!
+     */
     public void updateScoreboard(Player player)
     {
         PlayerDB playerdb = databaseManager.getPlayerDBbyUUID(player);
@@ -52,6 +60,12 @@ public class ScoreboardModule
         player.setScoreboard(playerdb.getPlayerScoreboard().getScoreBoard());
     }
 
+    /**
+     * Berekent de speler zijn KD Ratio
+     * @param kills de kills van de speler
+     * @param deaths de deaths van de speler
+     * @return de KD Ratio van de speler
+     */
     public double calculateKdRatio(int kills, int deaths)
     {
         double kd = Math.round((((double) kills / (double) deaths /100) * 100) * 10) / 10.0;

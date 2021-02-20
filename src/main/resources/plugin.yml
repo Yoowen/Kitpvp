@@ -8,5 +8,5 @@ description: Kleine kitpvp plugin voor minecraft v1.16.2
 commands:
   spawneditmode:
     usage: /spawneditmode
-  kits:
-    usage: /kits
+  createkit:
+    usage: /createkit
