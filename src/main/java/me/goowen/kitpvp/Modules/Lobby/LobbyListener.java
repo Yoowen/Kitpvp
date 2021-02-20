@@ -34,7 +34,6 @@ public class LobbyListener implements Listener
     {
         if (event.getPlayer().getInventory().getItemInMainHand().equals(lobbyManager.kitselector()))
         {
-            System.out.println(kitsManager);
             kitsManager.KitsMenu(event.getPlayer());
         }
     }
