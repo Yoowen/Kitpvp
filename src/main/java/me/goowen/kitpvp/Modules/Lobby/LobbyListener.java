@@ -33,6 +33,10 @@ public class LobbyListener implements Listener
         }
     }
 
+    /**
+     * event om te kijken of een speler clickt met een kit selector.
+     * @param event
+     */
     @EventHandler
     public void LobbyBook(PlayerInteractEvent event)
     {
