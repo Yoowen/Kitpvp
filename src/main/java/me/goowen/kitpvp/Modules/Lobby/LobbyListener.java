@@ -18,6 +18,10 @@ public class LobbyListener implements Listener
     private LobbyManager lobbyManager = LobbyModule.getLobbyManager();
     private KitsManager kitsManager = KitsModule.getKitsManager();
 
+    /**
+     * event om te controleren of de speler een item in zijn inventory probeert te verplaatsen terwijl ze in de lobby zitten.
+     * @param event ,Het opgeroepen event
+     */
     @EventHandler
     public void LobbyInventoryEvent(InventoryClickEvent event)
     {
