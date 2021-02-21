@@ -8,5 +8,10 @@ description: Kleine kitpvp plugin voor minecraft v1.16.2
 commands:
   spawneditmode:
     usage: /spawneditmode
-  createkit:
-    usage: /createkit
+    description: Toggled spawn editmode voor de ingame Spawns.
+  kit:
+    usage: /kit <create/delete> <name>
+    description: maak of verwijder een kit.
+  setlobby:
+    usage: /setlobby
+    description: Zet de ingame lobby naar jou huidige locatie.
