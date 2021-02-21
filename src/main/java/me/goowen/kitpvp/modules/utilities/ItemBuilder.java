@@ -19,39 +19,39 @@ public class ItemBuilder {
     private ItemStack is;
 
     /**
-     * Create a new ItemBuilder from scratch.
+     * maakt een nieuwe itembuilder.
      *
-     * @param m The material to create the ItemBuilder with.
+     * @param m de material waarmee de itembuilder word gemaakt.
      */
     public ItemBuilder(Material m) {
         this(m, 1);
     }
 
     /**
-     * Create a new ItemBuilder over an existing itemstack.
+     * Maakt een nieuwe itembuilder.
      *
-     * @param is The itemstack to create the ItemBuilder over.
+     * @param is De itemstack waarmee de itembuilder word gemaakt.
      */
     public ItemBuilder(ItemStack is) {
         this.is = is;
     }
 
     /**
-     * Create a new ItemBuilder from scratch.
+     * Maakt een nieuwe itembuilder.
      *
-     * @param m      The material of the item.
-     * @param amount The amount of the item.
+     * @param m Het materiaal dat word gebruikt.
+     * @param amount De hoeveelheid van het materiaal.
      */
     public ItemBuilder(Material m, int amount) {
         is = new ItemStack(m, amount);
     }
 
     /**
-     * Create a new ItemBuilder from scratch.
+     * Maakt een nieuwe itembuilder.
      *
-     * @param m          The material of the item.
-     * @param amount     The amount of the item.
-     * @param durability The durability of the item.
+     * @param m          Het materiaal van het item.
+     * @param amount     De Hoeveelheid van het item.
+     * @param durability De durability van het item.
      */
     @SuppressWarnings("deprecation")
     public ItemBuilder(Material m, int amount, byte durability) {
@@ -59,9 +59,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Clone the ItemBuilder into a new one.
+     * Cloont de itembuilder.
      *
-     * @return The cloned instance.
+     * @return
      */
     public ItemBuilder clone() {
         return new ItemBuilder(is);
@@ -69,9 +69,9 @@ public class ItemBuilder {
 
 
     /**
-     * Change the amouth of the item.
+     * Ze de hoeveel heid van de item.
      *
-     * @param amouth is the amouth it sets itself to
+     * @param amouth de hoeveelheid die gezet moet worden.
      */
     @SuppressWarnings("deprecation")
     public ItemBuilder setAmouth(int amouth) {
@@ -80,9 +80,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Change the durability of the item.
+     * Ze de durability van de item.
      *
-     * @param dur The durability to set it to.
+     * @param dur de durability die moet worden gezet.
      */
     @SuppressWarnings("deprecation")
     public ItemBuilder setDurability(short dur) {
@@ -91,9 +91,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Set the displayname of the item.
+     * Zet de naam van het item.
      *
-     * @param name The name to change it to.
+     * @param name de naam die gezet moet worden.
      */
     public ItemBuilder setName(String name) {
         ItemMeta im = is.getItemMeta();
@@ -103,10 +103,10 @@ public class ItemBuilder {
     }
 
     /**
-     * Add an unsafe enchantment.
+     * Voegt een unsafe Enchantment toe op het item.
      *
-     * @param ench  The enchantment to add.
-     * @param level The level to put the enchant on.
+     * @param ench  De enchantment die moet worden gezet.
+     * @param level De level van de enchantment.
      */
     public ItemBuilder addUnsafeEnchantment(Enchantment ench, int level) {
         is.addUnsafeEnchantment(ench, level);
@@ -114,9 +114,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Remove a certain enchant from the item.
+     * Verwijdert de enchantment van een item.
      *
-     * @param ench The enchantment to remove
+     * @param ench de enchantment die moet worden verwijdert.
      */
     public ItemBuilder removeEnchantment(Enchantment ench) {
         is.removeEnchantment(ench);
@@ -124,9 +124,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Set the skull owner for the item. Works on skulls only.
+     * Zet de skull owner van een item.
      *
-     * @param owner The name of the skull's owner.
+     * @param owner De naam van de skullowner.
      */
     @SuppressWarnings("deprecation")
     public ItemBuilder setSkullOwner(String owner) {
@@ -140,10 +140,10 @@ public class ItemBuilder {
     }
 
     /**
-     * Add an enchant to the item.
+     * Voegt een enchantment toe op een item.
      *
-     * @param ench  The enchant to add
-     * @param level The level
+     * @param ench  de enchantment die moet worden toegevoegt.
+     * @param level het level van de enchantment.
      */
     public ItemBuilder addEnchant(Enchantment ench, int level) {
         ItemMeta im = is.getItemMeta();
@@ -153,17 +153,7 @@ public class ItemBuilder {
     }
 
     /**
-     * Add multiple enchants at once.
-     *
-     * @param enchantments The enchants to add.
-     */
-    public ItemBuilder addEnchantments(Map<Enchantment, Integer> enchantments) {
-        is.addEnchantments(enchantments);
-        return this;
-    }
-
-    /**
-     * Sets infinity durability on the item by setting the durability to Short.MAX_VALUE.
+     * Zet de durability van een item naar oneindig.
      */
     @SuppressWarnings("deprecation")
     public ItemBuilder setInfinityDurability() {
@@ -172,9 +162,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Re-sets the lore.
+     * Herzet de lore.
      *
-     * @param lore The lore to set it to.
+     * @param lore de lore die moet worden gezet.
      */
     public ItemBuilder setLore(String... lore) {
         ItemMeta im = is.getItemMeta();
@@ -184,9 +174,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Re-sets the lore.
+     * Herzet de lore.
      *
-     * @param lore The lore to set it to.
+     * @param lore de lore die moet worden gezet.
      */
     public ItemBuilder setLore(List<String> lore) {
         ItemMeta im = is.getItemMeta();
@@ -196,7 +186,7 @@ public class ItemBuilder {
     }
 
     /**
-     * Remove a lore line.
+     * verwijdert een lore regel.
      */
     public ItemBuilder removeLoreLine(String line) {
         ItemMeta im = is.getItemMeta();
@@ -209,9 +199,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Remove a lore line.
+     * verwijdert een specefieke lore regel.
      *
-     * @param index The index of the lore line to remove.
+     * @param index het nummer van welke regel moet worden verwijdert.
      */
     public ItemBuilder removeLoreLine(int index) {
         ItemMeta im = is.getItemMeta();
@@ -224,9 +214,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Add a lore line.
+     * voegt een lore lijn toe.
      *
-     * @param line The lore line to add.
+     * @param line de lore lijn die moet worden toegevoegt.
      */
     public ItemBuilder addLoreLine(String line) {
         ItemMeta im = is.getItemMeta();
@@ -239,10 +229,10 @@ public class ItemBuilder {
     }
 
     /**
-     * Add a lore line.
+     * voegt een lore lijn toe.
      *
-     * @param line The lore line to add.
-     * @param pos  The index of where to put it.
+     * @param line de lore lijn die moet worden toegevoegt.
+     * @param pos  Het nummer van de lijn die moet worden gezet.
      */
     public ItemBuilder addLoreLine(String line, int pos) {
         ItemMeta im = is.getItemMeta();
@@ -254,9 +244,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Replaces all lores. with your new lore list.
+     * Herzet alle lores op een item.
      *
-     * @param lores the list with lores
+     * @param lores de lijst met lores.
      */
     public ItemBuilder setLoreList(List<String> lores) {
         System.out.println(lores == null);
@@ -288,7 +278,12 @@ public class ItemBuilder {
         return this;
     }
 
-
+    /**
+     * Verwijdert alle atributen van de het item.
+     *
+     * @param bool
+     * @return
+     */
     public ItemBuilder hideAttributes(boolean bool) {
         ItemMeta itemMeta = is.getItemMeta();
 
@@ -324,9 +319,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the armor color of a leather armor piece. Works only on leather armor pieces.
+     * Zet de armor color van een item.
      *
-     * @param color The color to set it to.
+     * @param color De kleur die moet worden gezet.
      */
     public ItemBuilder setLeatherArmorColor(Color color) {
         try {
@@ -339,7 +334,12 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the armor color of a leather armor piece with RGB. Works only on leather armor pieces .
+     * Zet de armor color van een item.
+     *
+     * @param color1 rood value
+     * @param color2 groen value
+     * @param color3 blauw value
+     * @return
      */
     public ItemBuilder setLeatherArmourColorRGB(int color1, int color2, int color3) {
         try {
@@ -353,9 +353,9 @@ public class ItemBuilder {
     }
 
     /**
-     * Retrieves the itemstack from the ItemBuilder.
+     * Maakt een itemstack van een itembuilder.
      *
-     * @return The itemstack created/modified by the ItemBuilder instance.
+     * @return The itemstack gemodificeert door de itembuilder.
      */
     public ItemStack toItemStack() {
         return is;
