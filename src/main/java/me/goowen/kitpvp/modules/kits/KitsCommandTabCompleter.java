@@ -10,7 +10,7 @@ import java.util.List;
 public class KitsCommandTabCompleter implements TabCompleter {
 
     /**
-     *Voegt een tab Completer toe voor het command kits.
+     * Voegt een tab Completer toe voor het command kits.
      *
      * @param sender de uivoerder van het command!
      * @param command ongebruikt
@@ -33,7 +33,7 @@ public class KitsCommandTabCompleter implements TabCompleter {
     }
 
     /**
-     *
+     * Returnt alle mogenlijk argumenten in een arraylist!
      * @param Possibleargs
      * @param args
      * @return
