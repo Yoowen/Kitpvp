@@ -44,7 +44,7 @@ public class DatabaseModule
     {
         try
         {
-            String uri = "mongodb+srv://goowen:admin@cluster1.mpyu5.mongodb.net/test";
+            String uri = "hierzo connection uri invoeren";
             MongoClientURI clientURI = new MongoClientURI(uri);
             MongoClient mongoClient = new MongoClient(clientURI);
             MongoDatabase mongoDatabase = mongoClient.getDatabase("Kitpvp");
