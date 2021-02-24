@@ -23,7 +23,7 @@ public class KitsCommand implements CommandExecutor
     {
         if (sender instanceof Player)
         {
-            if (sender.hasPermission("!kitpvp.kits"))
+            if (sender.hasPermission("kitpvp.kits"))
             {
                 Player player = (Player) sender;
                 if (player.getInventory().getItemInMainHand() != null)
