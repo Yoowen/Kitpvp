@@ -1,4 +1,4 @@
-package me.goowen.kitpvp.modules.eventlisteners.events;
+package me.goowen.kitpvp.modules.eventlisteners.listeners;
 
 import me.goowen.kitpvp.modules.lobby.LobbyManager;
 import me.goowen.kitpvp.modules.lobby.LobbyModule;

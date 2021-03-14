@@ -16,7 +16,7 @@ public class LobbyModule
      * Maakt instances aan voor de Lobbymodule en Lobbymanager
      * en registreert het lobbyListener event en het setlobby command.
      */
-    public void LobbyModule()
+    public LobbyModule()
     {
         lobbyModule = this;
         lobbyManager = new LobbyManager();

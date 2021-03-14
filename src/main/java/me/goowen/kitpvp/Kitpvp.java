@@ -19,13 +19,13 @@ public final class Kitpvp extends JavaPlugin {
         instance = this;
         loadMS = System.currentTimeMillis();
         System.out.println("Gestart met het laden van kitPVP V" + this.getDescription().getVersion() + " by " + this.getDescription().getAuthors().toString().replace("[", "").replace("]", ""));
-        new DatabaseModule().DatabaseModule();
-        new ScoreboardModule().ScoreboardModule();
-        new ConfigModule().ConfigModule();
-        new SpawnsModule().SpawnsModule();
-        new KitsModule().kitsModule();
-        new LobbyModule().LobbyModule();
-        new EventListenersModule().EventListenersModule();
+        new ConfigModule();
+        new DatabaseModule();
+        new ScoreboardModule();
+        new SpawnsModule();
+        new KitsModule();
+        new LobbyModule();
+        new EventListenersModule();
         System.out.println("Kit pvp succesvol geladen. Dit prosess duurde " + (System.currentTimeMillis() - loadMS) + " ms!");
     }
 

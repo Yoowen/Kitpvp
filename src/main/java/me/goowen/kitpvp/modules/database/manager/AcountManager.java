@@ -1,19 +1,20 @@
 package me.goowen.kitpvp.modules.database.manager;
 
+import lombok.Getter;
 import me.goowen.kitpvp.modules.database.DatabaseModule;
 import me.goowen.kitpvp.modules.database.repository.PlayerDB;
-import me.goowen.kitpvp.modules.database.callbacks.loadingPlayer;
+import me.goowen.kitpvp.modules.database.callbacks.LoadingPlayer;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class AcountManager
 {
-    private final ArrayList<PlayerDB> playerslist = new ArrayList<>();
+    private final @Getter HashMap<UUID, PlayerDB> playersMap = new HashMap<>();
     private DatabaseModule databaseModule = DatabaseModule.getDatabaseModule();
 
     /**
@@ -22,12 +23,12 @@ public class AcountManager
      * @param player
      * @param loadingPlayer
      */
-    public void load(Player player, loadingPlayer loadingPlayer)
+    public void load(Player player, LoadingPlayer loadingPlayer)
     {
         //Laat alles in op nieuwe chain deze draait Async
         databaseModule.newChain().async(() ->
         {
-            Document playerdocument = new Document("UUID", player.getUniqueId().toString());
+            Document playerdocument = new Document("_id", player.getUniqueId().toString());
             Document found = DatabaseModule.getPlayerDBcollection().find(playerdocument).first();
 
             //Kijkt het playerdocument al bestaat
@@ -38,14 +39,14 @@ public class AcountManager
                 playerdocument.append("deaths", 0);
                 playerdocument.append("name", player.getName());
                 DatabaseModule.getPlayerDBcollection().insertOne(playerdocument);
-                playerslist.add(new PlayerDB(player.getUniqueId().toString(), player.getName(),0,0, false, false));
+                playersMap.put(player.getUniqueId(), new PlayerDB(player.getUniqueId().toString(), player.getName(),0,0, false, false));
                 System.out.println(ChatColor.AQUA + " is new here added them in Database and loaded...Welkom!");
             }
             else
             {
                 int kills = found.getInteger("kills");
                 int deaths = found.getInteger("deaths");
-                playerslist.add(new PlayerDB(player.getUniqueId().toString(), player.getName(), kills, deaths, false, false));
+                playersMap.put(player.getUniqueId(),new PlayerDB(player.getUniqueId().toString(), player.getName(), kills, deaths, false, false));
                 System.out.println(ChatColor.LIGHT_PURPLE + player.getName() + " found in Database and loaded...Welkom!");
             }
             loadingPlayer.done(getPlayerDBbyUUID(player));
@@ -57,11 +58,11 @@ public class AcountManager
      * @param player
      * @param loadingPlayer
      */
-    public void save(Player player, loadingPlayer loadingPlayer)
+    public void save(Player player, LoadingPlayer loadingPlayer)
     {
         databaseModule.newChain().async(() ->
         {
-            Document playerdocument = new Document("UUID", player.getUniqueId().toString());
+            Document playerdocument = new Document("_id", player.getUniqueId().toString());
             Document found = DatabaseModule.getPlayerDBcollection().find(playerdocument).first();
             if (found != null)
             {
@@ -82,20 +83,16 @@ public class AcountManager
      */
     public PlayerDB getPlayerDBbyUUID(Player player)
     {
-        for (PlayerDB playerDB : playerslist)
+        try
         {
-            if (playerDB.getUuid().equals(player.getUniqueId().toString()))
-            {
-                return playerDB;
-            }
+            return playersMap.get(player.getUniqueId());
         }
-        System.out.println("Error player could not be loaded from the database by UUID");
+        catch (NullPointerException exception)
+        {
+            exception.printStackTrace();
+            System.out.println("Error player could not be loaded from the database by UUID");
+        }
         return null;
-    }
-
-    public List<PlayerDB> getPlayersList()
-    {
-        return playerslist;
     }
 
 }

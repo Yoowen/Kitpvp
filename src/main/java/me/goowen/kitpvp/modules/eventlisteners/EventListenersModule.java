@@ -2,10 +2,10 @@ package me.goowen.kitpvp.modules.eventlisteners;
 
 import lombok.Getter;
 import me.goowen.kitpvp.Kitpvp;
-import me.goowen.kitpvp.modules.eventlisteners.events.PlayerDeathListener;
-import me.goowen.kitpvp.modules.eventlisteners.events.PlayerDropEvent;
-import me.goowen.kitpvp.modules.eventlisteners.events.PlayerLoginListener;
-import me.goowen.kitpvp.modules.eventlisteners.events.PlayerQuitListener;
+import me.goowen.kitpvp.modules.eventlisteners.listeners.PlayerDeathListener;
+import me.goowen.kitpvp.modules.eventlisteners.listeners.PlayerDropEvent;
+import me.goowen.kitpvp.modules.eventlisteners.listeners.PlayerLoginListener;
+import me.goowen.kitpvp.modules.eventlisteners.listeners.PlayerQuitListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
@@ -22,7 +22,7 @@ public class EventListenersModule
      * - PlayerDeath
      * - PlayerDrop
      */
-    public void EventListenersModule()
+    public EventListenersModule()
     {
         eventListenersModule = this;
         Bukkit.getPluginManager().registerEvents(new PlayerLoginListener(), plugin);

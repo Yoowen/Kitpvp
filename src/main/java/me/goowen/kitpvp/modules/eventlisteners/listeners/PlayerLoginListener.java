@@ -1,13 +1,13 @@
-package me.goowen.kitpvp.modules.eventlisteners.events;
+package me.goowen.kitpvp.modules.eventlisteners.listeners;
 
 import me.goowen.kitpvp.Kitpvp;
-import me.goowen.kitpvp.modules.eventlisteners.customEvents.AfterPlayerJoinEvent;
+import me.goowen.kitpvp.modules.eventlisteners.events.PlayerLoadedEvent;
 import me.goowen.kitpvp.modules.lobby.LobbyManager;
 import me.goowen.kitpvp.modules.lobby.LobbyModule;
 import me.goowen.kitpvp.modules.database.DatabaseModule;
 import me.goowen.kitpvp.modules.database.manager.AcountManager;
 import me.goowen.kitpvp.modules.database.repository.PlayerDB;
-import me.goowen.kitpvp.modules.database.callbacks.loadingPlayer;
+import me.goowen.kitpvp.modules.database.callbacks.LoadingPlayer;
 import me.goowen.kitpvp.modules.scoreboard.ScoreboardModule;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -31,7 +31,7 @@ public class PlayerLoginListener implements Listener
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onLogin(PlayerLoginEvent event)
     {
-        databaseManager.load(event.getPlayer(),  new loadingPlayer()
+        databaseManager.load(event.getPlayer(),  new LoadingPlayer()
                 {
                     @Override
                     public void waiting() {
@@ -43,7 +43,7 @@ public class PlayerLoginListener implements Listener
 
                     @Override
                     public void done(PlayerDB playerdb) {
-                        AfterPlayerJoinEvent joinevent = new AfterPlayerJoinEvent(event.getPlayer());
+                        PlayerLoadedEvent joinevent = new PlayerLoadedEvent(event.getPlayer());
                         Bukkit.getScheduler().runTask(plugin, () -> Bukkit.getPluginManager().callEvent(joinevent));
                     }
 
@@ -68,7 +68,7 @@ public class PlayerLoginListener implements Listener
      * @param e
      */
     @EventHandler
-    public void afterLogin(AfterPlayerJoinEvent e)
+    public void afterLoad(PlayerLoadedEvent e)
     {
         Player player = e.getPlayer();
         scoreboardModule.setupScoreboard(player);

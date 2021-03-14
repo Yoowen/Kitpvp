@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 
 public class LobbyCommand implements CommandExecutor
 {
-
     /**
      * Ze De Worldspawn naar de locatie van de speler dit functioneert als het spawnpunt van de lobby
      *

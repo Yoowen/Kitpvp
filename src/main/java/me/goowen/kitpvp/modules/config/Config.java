@@ -9,7 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 
-public class ConfigManager
+public class Config
 {
     private File config;
     private FileConfiguration configConfiguration;
@@ -20,7 +20,7 @@ public class ConfigManager
      * Maakt Deze class aan en roept de class aan een config te creeren.
      * @param name De naam van de config
      */
-    public ConfigManager(String name)
+    public Config(String name)
     {
         this.name = name;
         this.createCustomConfig();
@@ -88,7 +88,7 @@ public class ConfigManager
     /**
      * Slaat de Config Async op
      */
-    public void saveAsync(ConfigManager configManager)
+    public void saveAsync(Config configManager)
     {
         Bukkit.getServer().getScheduler().runTaskAsynchronously(plugin, () ->
         {

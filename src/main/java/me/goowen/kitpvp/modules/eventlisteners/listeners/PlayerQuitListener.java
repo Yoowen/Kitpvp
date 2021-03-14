@@ -1,6 +1,6 @@
-package me.goowen.kitpvp.modules.eventlisteners.events;
+package me.goowen.kitpvp.modules.eventlisteners.listeners;
 
-import me.goowen.kitpvp.modules.database.callbacks.loadingPlayer;
+import me.goowen.kitpvp.modules.database.callbacks.LoadingPlayer;
 import me.goowen.kitpvp.modules.database.DatabaseModule;
 import me.goowen.kitpvp.modules.database.manager.AcountManager;
 import me.goowen.kitpvp.modules.database.repository.PlayerDB;
@@ -20,7 +20,7 @@ public class PlayerQuitListener implements Listener
     @EventHandler
     public void onQuit(PlayerQuitEvent event)
     {
-        databaseManager.save(event.getPlayer(),  new loadingPlayer()
+        databaseManager.save(event.getPlayer(),  new LoadingPlayer()
                 {
                     @Override
                     public void waiting() {
@@ -33,7 +33,7 @@ public class PlayerQuitListener implements Listener
                     @Override
                     public void done(PlayerDB playerdb)
                     {
-                        databaseManager.getPlayersList().remove(playerdb);
+                        databaseManager.getPlayersMap().remove(playerdb);
                     }
 
                     @Override
@@ -55,7 +55,7 @@ public class PlayerQuitListener implements Listener
     @EventHandler
     public void onKick(PlayerKickEvent event)
     {
-        databaseManager.save(event.getPlayer(),  new loadingPlayer()
+        databaseManager.save(event.getPlayer(),  new LoadingPlayer()
                 {
                     @Override
                     public void waiting() {
@@ -68,7 +68,7 @@ public class PlayerQuitListener implements Listener
                     @Override
                     public void done(PlayerDB playerdb)
                     {
-                        databaseManager.getPlayersList().remove(playerdb);
+                        databaseManager.getPlayersMap().remove(playerdb);
                     }
 
                     @Override

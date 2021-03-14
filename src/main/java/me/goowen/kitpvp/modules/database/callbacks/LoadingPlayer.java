@@ -2,7 +2,7 @@ package me.goowen.kitpvp.modules.database.callbacks;
 
 import me.goowen.kitpvp.modules.database.repository.PlayerDB;
 
-public interface loadingPlayer {
+public interface LoadingPlayer {
 
     void waiting();
 

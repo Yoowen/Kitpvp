@@ -13,7 +13,7 @@ public class ScoreboardModule
     public static ScoreboardModule scoreboardModule;
     private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
 
-    public void ScoreboardModule()
+    public ScoreboardModule()
     {
         scoreboardModule = this;
         System.out.println(ChatColor.DARK_AQUA + "[ScoreboardModule] De module is succesvol geladen!");

@@ -1,4 +1,4 @@
-package me.goowen.kitpvp.modules.eventlisteners.events;
+package me.goowen.kitpvp.modules.eventlisteners.listeners;
 
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;

@@ -14,7 +14,7 @@ public class KitsModule
     /**
      * Maakt een instance aan voor deze class, en registeert het createkit command en de kits listener
      */
-    public void kitsModule()
+    public KitsModule()
     {
         kitsModule = this;
         kitsManager = new KitsManager();

@@ -17,16 +17,16 @@ public class PlayerDB
     @Setter @Getter
     private PlayerScoreboard playerScoreboard;
     @Getter @Setter
-    private boolean SpawnEditmode;
+    private boolean spawnEditmode;
     @Getter @Setter
     private boolean lobbymode;
 
-    public PlayerDB(String uuid, String name, int kills, int deaths, boolean SpawnEditmode, boolean lobbymode)
+    public PlayerDB(String uuid, String name, int kills, int deaths, boolean spawnEditmode, boolean lobbymode)
     {
         this.name = name;
         this.kills = kills;
         this.deaths = deaths;
-        this.SpawnEditmode = SpawnEditmode;
+        this.spawnEditmode = spawnEditmode;
         this.lobbymode = lobbymode;
         this.uuid = uuid;
     }
