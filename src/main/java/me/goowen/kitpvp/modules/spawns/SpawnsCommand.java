@@ -26,6 +26,8 @@ public class SpawnsCommand implements CommandExecutor
      * @param args de argumenten die met het commando worden verzonden
      * @return
      */
+
+    /*
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
     {
@@ -67,5 +69,47 @@ public class SpawnsCommand implements CommandExecutor
            sender.sendMessage(ChatColor.RED + "Only a player can use this command");
        }
        return true;
+    }
+     */
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
+    {
+
+        if (!(sender instanceof Player))
+        {
+            sender.sendMessage(ChatColor.RED + "Only a player can use this command");
+            return true;
+        }
+
+        if (!sender.hasPermission("kitpvp.spawneditor"))
+        {
+            sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
+            return true;
+        }
+
+        if (!(args.length == 0))
+        {
+            sender.sendMessage(ChatColor.RED + "Wrong usage, use /spawneditmode!");
+            return true;
+        }
+
+        Player player = (Player) sender;
+        PlayerDB playerDB = databaseManager.getPlayerDBbyUUID(player);
+        if (!playerDB.isSpawnEditmode())
+        {
+            player.getInventory().addItem(spawnsManager.spawnEditor());
+            playerDB.setSpawnEditmode(true);
+            player.sendMessage(ChatColor.DARK_AQUA + "You're now in spawn editmode, use this command again to toggle!");
+            spawnsManager.showSpawns(player);
+        }
+        else
+        {
+            player.getInventory().removeItem(spawnsManager.spawnEditor());
+            playerDB.setSpawnEditmode(false);
+            player.sendMessage(ChatColor.DARK_AQUA + "You're now out of spawn editmode, use this command again to toggle!");
+            spawnsManager.hideSpawns(player);
+        }
+        return true;
     }
 }
