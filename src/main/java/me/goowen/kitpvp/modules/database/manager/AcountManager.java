@@ -1,21 +1,25 @@
 package me.goowen.kitpvp.modules.database.manager;
 
 import lombok.Getter;
+import me.goowen.kitpvp.Kitpvp;
 import me.goowen.kitpvp.modules.database.DatabaseModule;
 import me.goowen.kitpvp.modules.database.repository.PlayerDB;
 import me.goowen.kitpvp.modules.database.callbacks.LoadingPlayer;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class AcountManager
 {
-    private final @Getter HashMap<UUID, PlayerDB> playersMap = new HashMap<>();
-    private DatabaseModule databaseModule = DatabaseModule.getDatabaseModule();
+    private final @Getter Map<UUID, PlayerDB> playersMap = new HashMap<>();
+    private DatabaseModule databaseModule = Kitpvp.getDatabaseModule();
+    private Kitpvp plugin = Kitpvp.getInstance();
 
     /**
      * Laat de speler in van de database of wanneer de speler niet bestaat word de speler aangemaakt.
@@ -40,14 +44,14 @@ public class AcountManager
                 playerdocument.append("name", player.getName());
                 DatabaseModule.getPlayerDBcollection().insertOne(playerdocument);
                 playersMap.put(player.getUniqueId(), new PlayerDB(player.getUniqueId().toString(), player.getName(),0,0, false, false));
-                System.out.println(ChatColor.AQUA + " is new here added them in Database and loaded...Welkom!");
+                plugin.getLog().info(ChatColor.LIGHT_PURPLE + " is new here added them in Database and loaded...Welkom!");
             }
             else
             {
                 int kills = found.getInteger("kills");
                 int deaths = found.getInteger("deaths");
                 playersMap.put(player.getUniqueId(),new PlayerDB(player.getUniqueId().toString(), player.getName(), kills, deaths, false, false));
-                System.out.println(ChatColor.LIGHT_PURPLE + player.getName() + " found in Database and loaded...Welkom!");
+                plugin.getLog().info(ChatColor.LIGHT_PURPLE + player.getName() + " found in Database and loaded...Welkom!");
             }
             loadingPlayer.done(getPlayerDBbyUUID(player));
         }).execute();
@@ -70,7 +74,7 @@ public class AcountManager
                 int deaths = this.getPlayerDBbyUUID(player).getDeaths();
                 Bson updateoperation = new Document("$set", new Document("name", player.getName()).append("kills", kills).append("deaths", deaths));
                 DatabaseModule.getPlayerDBcollection().updateOne(found, updateoperation);
-                System.out.println(ChatColor.LIGHT_PURPLE + player.getName() + " has been saved in Database");
+                plugin.getLog().info(ChatColor.LIGHT_PURPLE + player.getName() + " has been saved in Database");
             }
             loadingPlayer.done(getPlayerDBbyUUID(player));
         }).execute();
@@ -90,7 +94,7 @@ public class AcountManager
         catch (NullPointerException exception)
         {
             exception.printStackTrace();
-            System.out.println("Error player could not be loaded from the database by UUID");
+            plugin.getLog().warning("Error player could not be loaded from the database by UUID");
         }
         return null;
     }

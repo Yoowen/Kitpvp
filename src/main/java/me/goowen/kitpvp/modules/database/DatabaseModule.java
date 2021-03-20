@@ -17,26 +17,24 @@ import org.bukkit.ChatColor;
 
 public class DatabaseModule
 {
-    private static @Getter DatabaseModule databaseModule;
     public static @Getter AcountManager databaseManager;
     public static @Getter MongoCollection<Document> playerDBcollection;
 
     private static TaskChainFactory taskChainFactory;
     private Kitpvp plugin = Kitpvp.getInstance();
-    private ConfigModule configModule = ConfigModule.getConfigModule();
+    private ConfigModule configModule = Kitpvp.getConfigModule();
 
     /**
      * Maakt de instances aan voor de databasemodule en databasemanager en zet taskchainfactory op!
      */
     public DatabaseModule()
     {
-        databaseModule = this;
         databaseManager = new AcountManager();
 
         mongoConnect();
 
         taskChainFactory = BukkitTaskChainFactory.create(plugin);
-        System.out.println(ChatColor.DARK_AQUA + "[DatabaseModule] De module is succesvol geladen!");
+        plugin.getLog().info(ChatColor.DARK_AQUA + "[DatabaseModule] De module is succesvol geladen!");
     }
 
     /**
@@ -53,11 +51,11 @@ public class DatabaseModule
 
             playerDBcollection = mongoDatabase.getCollection("playerDB");
 
-            System.out.println(ChatColor.GREEN + "[Kitpvp] Database has been connected!");
+            plugin.getLog().info(ChatColor.DARK_PURPLE + "[Database] Database has been connected!");
         }
         catch (MongoException expetion)
         {
-            System.out.println(ChatColor.RED + "Something went wrong with connecting to the database please try again!");
+            plugin.getLog().warning(ChatColor.RED + "Something went wrong with connecting to the database please try again!");
             expetion.printStackTrace();
             plugin.getServer().shutdown();
         }

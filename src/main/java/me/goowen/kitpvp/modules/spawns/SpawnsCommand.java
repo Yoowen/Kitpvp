@@ -27,51 +27,6 @@ public class SpawnsCommand implements CommandExecutor
      * @return
      */
 
-    /*
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
-    {
-       if (sender instanceof Player)
-       {
-           if (sender.hasPermission("kitpvp.spawneditor"))
-           {
-               if (args.length == 0)
-               {
-                   Player player = (Player) sender;
-                   PlayerDB playerDB = databaseManager.getPlayerDBbyUUID(player);
-                   if (!playerDB.isSpawnEditmode())
-                   {
-                       player.getInventory().addItem(spawnsManager.spawnEditor());
-                       playerDB.setSpawnEditmode(true);
-                       player.sendMessage(ChatColor.DARK_AQUA + "You're now in spawn editmode, use this command again to toggle!");
-                       spawnsManager.showSpawns(player);
-                   }
-                   else
-                   {
-                       player.getInventory().removeItem(spawnsManager.spawnEditor());
-                       playerDB.setSpawnEditmode(false);
-                       player.sendMessage(ChatColor.DARK_AQUA + "You're now out of spawn editmode, use this command again to toggle!");
-                       spawnsManager.hideSpawns(player);
-                   }
-               }
-               else
-               {
-                   sender.sendMessage(ChatColor.RED + "Wrong usage, use /spawneditmode!");
-               }
-           }
-           else
-           {
-               sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
-           }
-       }
-       else
-       {
-           sender.sendMessage(ChatColor.RED + "Only a player can use this command");
-       }
-       return true;
-    }
-     */
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
     {

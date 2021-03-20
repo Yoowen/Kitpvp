@@ -20,30 +20,27 @@ public class LobbyCommand implements CommandExecutor
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
     {
-       if (sender instanceof Player)
-       {
-           if (sender.hasPermission("kitpvp.setlobby"))
-           {
-               if (args.length == 0)
-               {
-                   Player player = (Player) sender;
-                   player.getWorld().setSpawnLocation(player.getLocation());
-                   sender.sendMessage(ChatColor.RED + "De SpawnLocatie van de lobby is succesvol gezet!");
-               }
-               else
-               {
-                   sender.sendMessage(ChatColor.RED + "Wrong usage, use /setlobby!");
-               }
-           }
-           else
-           {
-               sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
-           }
-       }
-       else
+       if (!(sender instanceof Player))
        {
            sender.sendMessage(ChatColor.RED + "Only a player can use this command");
+           return true;
        }
-       return true;
+
+        if (!(sender.hasPermission("kitpvp.setlobby")))
+        {
+            sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
+            return true;
+        }
+
+        if (!(args.length == 0))
+        {
+            sender.sendMessage(ChatColor.RED + "Wrong usage, use /setlobby!");
+            return true;
+        }
+
+        Player player = (Player) sender;
+        player.getWorld().setSpawnLocation(player.getLocation());
+        sender.sendMessage(ChatColor.RED + "De SpawnLocatie van de lobby is succesvol gezet!");
+        return true;
     }
 }

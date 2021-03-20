@@ -3,7 +3,6 @@ package me.goowen.kitpvp.modules.config;
 import me.goowen.kitpvp.Kitpvp;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -12,7 +11,7 @@ import java.io.IOException;
 public class Config
 {
     private File config;
-    private FileConfiguration configConfiguration;
+    private YamlConfiguration yamlConfiguration;
     private String name;
     private Kitpvp plugin = Kitpvp.getInstance();
 
@@ -26,7 +25,7 @@ public class Config
         this.createCustomConfig();
         try
         {
-            this.configConfiguration.save(config);
+            this.yamlConfiguration.save(config);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,11 +56,11 @@ public class Config
             }
         }
 
-        this.configConfiguration = new YamlConfiguration();
+        this.yamlConfiguration = new YamlConfiguration();
 
         try
         {
-            configConfiguration.load(config);
+            yamlConfiguration.load(config);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
@@ -80,9 +79,9 @@ public class Config
      * Returnt de configuratie van de yml file.
      * @return
      */
-    public FileConfiguration getConfigConfiguration()
+    public YamlConfiguration getConfigConfiguration()
     {
-        return configConfiguration;
+        return yamlConfiguration;
     }
 
     /**

@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class KitsManager
 {
-    private ConfigModule configModule = ConfigModule.getConfigModule();
+    private ConfigModule configModule = Kitpvp.getConfigModule();
     private Kitpvp plugin = Kitpvp.getInstance();
 
     /**

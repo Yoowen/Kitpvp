@@ -1,6 +1,7 @@
 package me.goowen.kitpvp.modules.scoreboard;
 
 import lombok.Getter;
+import me.goowen.kitpvp.Kitpvp;
 import me.goowen.kitpvp.modules.database.DatabaseModule;
 import me.goowen.kitpvp.modules.database.manager.AcountManager;
 import me.goowen.kitpvp.modules.database.repository.PlayerDB;
@@ -9,14 +10,13 @@ import org.bukkit.entity.Player;
 
 public class ScoreboardModule
 {
-    @Getter
-    public static ScoreboardModule scoreboardModule;
-    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+
+    private @Getter AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+    private Kitpvp plugin = Kitpvp.getInstance();
 
     public ScoreboardModule()
     {
-        scoreboardModule = this;
-        System.out.println(ChatColor.DARK_AQUA + "[ScoreboardModule] De module is succesvol geladen!");
+        plugin.getLog().info(ChatColor.DARK_AQUA + "[ScoreboardModule] De module is succesvol geladen!");
     }
 
     /**

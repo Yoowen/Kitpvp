@@ -1,5 +1,6 @@
 package me.goowen.kitpvp.modules.eventlisteners.listeners;
 
+import me.goowen.kitpvp.Kitpvp;
 import me.goowen.kitpvp.modules.lobby.LobbyManager;
 import me.goowen.kitpvp.modules.lobby.LobbyModule;
 import me.goowen.kitpvp.modules.database.DatabaseModule;
@@ -15,7 +16,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 public class PlayerDeathListener implements Listener
 {
     private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
-    private ScoreboardModule scoreboardModule = ScoreboardModule.getScoreboardModule();
+    private ScoreboardModule scoreboardModule = Kitpvp.getScoreboardModule();
     private LobbyManager lobbyManager = LobbyModule.getLobbyManager();
 
     /**

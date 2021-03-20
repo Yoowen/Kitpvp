@@ -7,8 +7,6 @@ import org.bukkit.ChatColor;
 
 public class LobbyModule
 {
-
-    public static @Getter LobbyModule lobbyModule;
     public static @Getter LobbyManager lobbyManager;
     private Kitpvp plugin = Kitpvp.getInstance();
 
@@ -18,10 +16,9 @@ public class LobbyModule
      */
     public LobbyModule()
     {
-        lobbyModule = this;
         lobbyManager = new LobbyManager();
         Bukkit.getPluginManager().registerEvents(new LobbyListener(), plugin);
         plugin.getCommand("setlobby").setExecutor(new LobbyCommand());
-        System.out.println(ChatColor.DARK_AQUA + "[lobbyModule] De module is succesvol geladen!");
+        plugin.getLog().info(ChatColor.DARK_AQUA + "[lobbyModule] De module is succesvol geladen!");
     }
 }

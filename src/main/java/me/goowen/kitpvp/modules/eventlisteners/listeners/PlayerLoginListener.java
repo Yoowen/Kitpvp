@@ -12,6 +12,7 @@ import me.goowen.kitpvp.modules.scoreboard.ScoreboardModule;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -20,7 +21,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 public class PlayerLoginListener implements Listener
 {
     private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
-    private ScoreboardModule scoreboardModule = ScoreboardModule.getScoreboardModule();
+    private ScoreboardModule scoreboardModule = Kitpvp.getScoreboardModule();
     private LobbyManager lobbyManager = LobbyModule.getLobbyManager();
     private Kitpvp plugin = Kitpvp.getInstance();
 
@@ -50,7 +51,7 @@ public class PlayerLoginListener implements Listener
                     @Override
                     public void error(String err) {
                         System.out.println(err);
-                        event.getPlayer().kickPlayer(ChatColor.RED + "Er is iets misgegaan bij het inladen van jou data en daarom hebben we jou gekickt!");
+                        event.disallow(PlayerLoginEvent.Result.KICK_OTHER, ChatColor.RED + "Er is iets misgegaan bij het inladen van jou data en daarom hebben we jou gekickt!");
                     }
 
                     @Override

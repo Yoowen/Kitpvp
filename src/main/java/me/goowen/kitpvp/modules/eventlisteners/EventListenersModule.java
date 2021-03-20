@@ -11,8 +11,6 @@ import org.bukkit.ChatColor;
 
 public class EventListenersModule
 {
-    @Getter
-    public static EventListenersModule eventListenersModule;
     private Kitpvp plugin = Kitpvp.getInstance();
 
     /**
@@ -24,11 +22,10 @@ public class EventListenersModule
      */
     public EventListenersModule()
     {
-        eventListenersModule = this;
         Bukkit.getPluginManager().registerEvents(new PlayerLoginListener(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerDropEvent(), plugin);
-        System.out.println(ChatColor.DARK_AQUA + "[eventListenerModule] De module is succesvol geladen!");
+        plugin.getLog().info(ChatColor.DARK_AQUA + "[eventListenerModule] De module is succesvol geladen!");
     }
 }

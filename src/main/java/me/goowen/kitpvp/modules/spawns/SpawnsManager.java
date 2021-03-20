@@ -1,6 +1,8 @@
 package me.goowen.kitpvp.modules.spawns;
 
+import me.goowen.kitpvp.Kitpvp;
 import me.goowen.kitpvp.modules.config.ConfigModule;
+import me.goowen.kitpvp.modules.kits.KitsModule;
 import me.goowen.kitpvp.modules.utilities.ItemBuilder;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -11,7 +13,8 @@ import java.util.Random;
 
 public class SpawnsManager
 {
-    private ConfigModule configModule = ConfigModule.getConfigModule();
+    private ConfigModule configModule = Kitpvp.getConfigModule();
+    private Kitpvp plugin = Kitpvp.getInstance();
 
     /**
      * Voegt een spawn locatie toe aan de lijst met mogenlijke spawn locaties.
@@ -28,7 +31,7 @@ public class SpawnsManager
         list.add(spawnlocation);
         configModule.getSpawnsConfig().getConfigConfiguration().set("locations", list);
         configModule.getSpawnsConfig().saveAsync(configModule.getSpawnsConfig());
-        System.out.println("locations added at" +  spawnlocation);
+        plugin.getLog().info("locations added at" +  spawnlocation);
     }
 
     /**
@@ -48,7 +51,7 @@ public class SpawnsManager
             list.remove(spawnlocation);
             configModule.getSpawnsConfig().getConfigConfiguration().set("locations", list);
             configModule.getSpawnsConfig().saveAsync(configModule.getSpawnsConfig());
-            System.out.println("locations removed at" +  spawnlocation);
+            plugin.getLog().info("locations removed at" +  spawnlocation);
 
         }
     }
@@ -103,7 +106,7 @@ public class SpawnsManager
         }
         else
         {
-            System.out.println(ChatColor.RED + "There currently don't exist any spawn locations");
+            plugin.getLog().warning(ChatColor.RED + "There currently don't exist any spawn locations");
         }
     }
 
@@ -129,7 +132,7 @@ public class SpawnsManager
         }
         else
         {
-            System.out.println(ChatColor.RED + "There currently don't exist any spawn locations");
+            plugin.getLog().warning(ChatColor.RED + "There currently don't exist any spawn locations");
         }
     }
 
