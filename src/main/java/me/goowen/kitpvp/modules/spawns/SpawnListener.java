@@ -15,7 +15,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 public class SpawnListener implements Listener
 {
-    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager acountManager = DatabaseModule.getAcountManager();
     private SpawnsManager spawnsManager = SpawnsModule.getSpawnsManager();
     private Kitpvp plugin = Kitpvp.getInstance();
 
@@ -27,7 +27,7 @@ public class SpawnListener implements Listener
     public void placeNewSpawn(BlockPlaceEvent event)
     {
         Player player = event.getPlayer();
-        PlayerDB playerDB = databaseManager.getPlayerDBbyUUID(player);
+        PlayerDB playerDB = acountManager.getPlayerDBbyUUID(player);
         if (playerDB.isSpawnEditmode() && player.getGameMode().equals(GameMode.CREATIVE))
         {
             if (player.getInventory().getItemInMainHand().equals(spawnsManager.spawnEditor()))
@@ -51,7 +51,7 @@ public class SpawnListener implements Listener
     public void removeOldSpawn(BlockBreakEvent event)
     {
         Player player = event.getPlayer();
-        PlayerDB playerDB = databaseManager.getPlayerDBbyUUID(player);
+        PlayerDB playerDB = acountManager.getPlayerDBbyUUID(player);
         if (playerDB.isSpawnEditmode() && player.getGameMode().equals(GameMode.CREATIVE))
         {
             if (event.getBlock().getType().equals(Material.AIR))

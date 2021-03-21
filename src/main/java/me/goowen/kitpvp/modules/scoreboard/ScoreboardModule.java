@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 public class ScoreboardModule
 {
 
-    private @Getter AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+    private @Getter AcountManager acountManager = DatabaseModule.getAcountManager();
     private Kitpvp plugin = Kitpvp.getInstance();
 
     public ScoreboardModule()
@@ -25,7 +25,7 @@ public class ScoreboardModule
      */
     public void setupScoreboard(Player player)
     {
-        PlayerDB playerdb = databaseManager.getPlayerDBbyUUID(player);
+        PlayerDB playerdb = acountManager.getPlayerDBbyUUID(player);
         int kills = playerdb.getKills();
         int deaths = playerdb.getDeaths();
         PlayerScoreboard board = new PlayerScoreboard(player,ChatColor.RED + "" + ChatColor.BOLD + "Kitpvp");
@@ -49,7 +49,7 @@ public class ScoreboardModule
      */
     public void updateScoreboard(Player player)
     {
-        PlayerDB playerdb = databaseManager.getPlayerDBbyUUID(player);
+        PlayerDB playerdb = acountManager.getPlayerDBbyUUID(player);
         int kills = playerdb.getKills();
         int deaths = playerdb.getDeaths();
         PlayerScoreboard board = playerdb.getPlayerScoreboard();

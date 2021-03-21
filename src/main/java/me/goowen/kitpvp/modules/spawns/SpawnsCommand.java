@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 public class SpawnsCommand implements CommandExecutor
 {
     private SpawnsManager spawnsManager = SpawnsModule.getSpawnsManager();
-    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager acountManager = DatabaseModule.getAcountManager();
 
     /**
      * Als het commando is afgevuurd, controleren we eerst of het een speler is die het heeft afgevuurd.
@@ -50,7 +50,7 @@ public class SpawnsCommand implements CommandExecutor
         }
 
         Player player = (Player) sender;
-        PlayerDB playerDB = databaseManager.getPlayerDBbyUUID(player);
+        PlayerDB playerDB = acountManager.getPlayerDBbyUUID(player);
         if (!playerDB.isSpawnEditmode())
         {
             player.getInventory().addItem(spawnsManager.spawnEditor());

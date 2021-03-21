@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class LobbyManager
 {
-    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager acountManager = DatabaseModule.getAcountManager();
 
     /**
      * Controleert of de speler in lobbymode zit, Zo ja word hij uit lobbymode gehaalt, Zo nee word hij in lobbymode gezet.
@@ -20,7 +20,7 @@ public class LobbyManager
      */
     public void lobbycheck(Player player)
     {
-        PlayerDB playerDB = databaseManager.getPlayerDBbyUUID(player);
+        PlayerDB playerDB = acountManager.getPlayerDBbyUUID(player);
         player.getInventory().clear();
         if(playerDB.isLobbymode())
         {

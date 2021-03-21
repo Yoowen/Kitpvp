@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class PlayerDeathListener implements Listener
 {
-    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager acountManager = DatabaseModule.getAcountManager();
     private ScoreboardModule scoreboardModule = Kitpvp.getScoreboardModule();
     private LobbyManager lobbyManager = LobbyModule.getLobbyManager();
 
@@ -31,12 +31,12 @@ public class PlayerDeathListener implements Listener
         if (event.getEntity().getKiller() instanceof Player)
         {
             Player killer = event.getEntity().getKiller().getPlayer();
-            PlayerDB killerDB = databaseManager.getPlayerDBbyUUID(killer);
+            PlayerDB killerDB = acountManager.getPlayerDBbyUUID(killer);
             killerDB.addKills(1);
             scoreboardModule.updateScoreboard(killer);
         }
         Player victim = event.getEntity().getPlayer();
-        PlayerDB victimDB = databaseManager.getPlayerDBbyUUID(victim);
+        PlayerDB victimDB = acountManager.getPlayerDBbyUUID(victim);
         victimDB.addDeaths(1);
         scoreboardModule.updateScoreboard(victim);
         event.setDeathMessage(null);

@@ -17,7 +17,7 @@ import org.bukkit.ChatColor;
 
 public class DatabaseModule
 {
-    public static @Getter AcountManager databaseManager;
+    public static @Getter AcountManager acountManager;
     public static @Getter MongoCollection<Document> playerDBcollection;
 
     private static TaskChainFactory taskChainFactory;
@@ -29,7 +29,7 @@ public class DatabaseModule
      */
     public DatabaseModule()
     {
-        databaseManager = new AcountManager();
+        acountManager = new AcountManager();
 
         mongoConnect();
 

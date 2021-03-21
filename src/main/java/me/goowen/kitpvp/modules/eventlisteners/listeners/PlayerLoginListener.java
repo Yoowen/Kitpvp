@@ -12,7 +12,6 @@ import me.goowen.kitpvp.modules.scoreboard.ScoreboardModule;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -20,7 +19,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 
 public class PlayerLoginListener implements Listener
 {
-    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager acountManager = DatabaseModule.getAcountManager();
     private ScoreboardModule scoreboardModule = Kitpvp.getScoreboardModule();
     private LobbyManager lobbyManager = LobbyModule.getLobbyManager();
     private Kitpvp plugin = Kitpvp.getInstance();
@@ -32,7 +31,7 @@ public class PlayerLoginListener implements Listener
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onLogin(PlayerLoginEvent event)
     {
-        databaseManager.load(event.getPlayer(),  new LoadingPlayer()
+        acountManager.load(event.getPlayer(),  new LoadingPlayer()
                 {
                     @Override
                     public void waiting() {

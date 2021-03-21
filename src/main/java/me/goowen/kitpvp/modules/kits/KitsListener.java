@@ -16,7 +16,7 @@ public class KitsListener implements Listener
 {
     private KitsManager kitsManager = KitsModule.getKitsManager();
     private SpawnsManager spawnsManager = SpawnsModule.getSpawnsManager();
-    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager acountManager = DatabaseModule.getAcountManager();
 
     /**
      * Alles wat te maken heeft met het klikken in de kits selector!
@@ -52,7 +52,7 @@ public class KitsListener implements Listener
             {
                 String selectedkit = ChatColor.stripColor(item.getItemMeta().getDisplayName());
                 player.teleport(spawnsManager.newSpawnlocation());
-                databaseManager.getPlayerDBbyUUID(player).setLobbymode(false);
+                acountManager.getPlayerDBbyUUID(player).setLobbymode(false);
                 kitsManager.giveKit(player, selectedkit);
             }
             catch (NullPointerException expetion)

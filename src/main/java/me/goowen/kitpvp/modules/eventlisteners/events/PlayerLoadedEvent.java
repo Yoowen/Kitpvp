@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerEvent;
 
 public class PlayerLoadedEvent extends PlayerEvent {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
-    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager acountManager = DatabaseModule.getAcountManager();
 
     public PlayerLoadedEvent(Player player)
     {
@@ -30,6 +30,6 @@ public class PlayerLoadedEvent extends PlayerEvent {
 
     public PlayerDB getPlayerDB()
     {
-        return databaseManager.getPlayerDBbyUUID(player);
+        return acountManager.getPlayerDBbyUUID(player);
     }
 }

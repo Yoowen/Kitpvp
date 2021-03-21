@@ -1,1 +1,1 @@
-mongoURI: "-"
+mongoURI: "mongodb+srv://goowen:admin@cluster1.mpyu5.mongodb.net/test"

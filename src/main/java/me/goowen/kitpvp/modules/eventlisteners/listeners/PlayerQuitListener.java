@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class PlayerQuitListener implements Listener
 {
-    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager acountManager = DatabaseModule.getAcountManager();
 
     /**
      * Slaat de speler op in de Database en verwijderd hem uit de hashmap wanneer hij of zij uitlogt.
@@ -20,7 +20,7 @@ public class PlayerQuitListener implements Listener
     @EventHandler
     public void onQuit(PlayerQuitEvent event)
     {
-        databaseManager.save(event.getPlayer(),  new LoadingPlayer()
+        acountManager.save(event.getPlayer(),  new LoadingPlayer()
                 {
                     @Override
                     public void waiting() {
@@ -33,7 +33,7 @@ public class PlayerQuitListener implements Listener
                     @Override
                     public void done(PlayerDB playerdb)
                     {
-                        databaseManager.getPlayersMap().remove(playerdb);
+                        acountManager.getPlayersMap().remove(playerdb);
                     }
 
                     @Override
@@ -55,7 +55,7 @@ public class PlayerQuitListener implements Listener
     @EventHandler
     public void onKick(PlayerKickEvent event)
     {
-        databaseManager.save(event.getPlayer(),  new LoadingPlayer()
+        acountManager.save(event.getPlayer(),  new LoadingPlayer()
                 {
                     @Override
                     public void waiting() {
@@ -68,7 +68,7 @@ public class PlayerQuitListener implements Listener
                     @Override
                     public void done(PlayerDB playerdb)
                     {
-                        databaseManager.getPlayersMap().remove(playerdb);
+                        acountManager.getPlayersMap().remove(playerdb);
                     }
 
                     @Override

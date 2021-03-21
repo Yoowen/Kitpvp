@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class LobbyListener implements Listener
 {
-    private AcountManager databaseManager = DatabaseModule.getDatabaseManager();
+    private AcountManager acountManager = DatabaseModule.getAcountManager();
     private LobbyManager lobbyManager = LobbyModule.getLobbyManager();
     private KitsManager kitsManager = KitsModule.getKitsManager();
 
@@ -26,7 +26,7 @@ public class LobbyListener implements Listener
     public void lobbyInventoryEvent(InventoryClickEvent event)
     {
         Player player = (Player) event.getWhoClicked();
-        PlayerDB playerDB = databaseManager.getPlayerDBbyUUID(player);
+        PlayerDB playerDB = acountManager.getPlayerDBbyUUID(player);
         if (playerDB.isLobbymode() && !player.getGameMode().equals(GameMode.CREATIVE))
         {
             event.setCancelled(true);
